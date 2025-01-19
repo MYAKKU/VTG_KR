@@ -19,15 +19,15 @@ module BCDice
         기본 양식 VTn@s#f$g>=T n=주사위 개수（생략 시 2） s=스페셜치（생략 시 12） f=펌블치（생략 시 2） g=레벨 갭 판정치（생략 가능） T=목표치（생략 가능）
 
         예시：
-        VT        기본 스페셜치, 펌블치 판정을 진행한다.
-        VT@10#3   스페셜치 10、ファンブル値3の判定を行う
-        VT3@10#3  スペシャル値10、ファンブル値3の判定を、アドバンテージを1点消費してダイス3つで行う
+        VT        기본 스페셜치, 펌블치로 판정
+        VT@10#3   스페셜치 10、펌블치 3으로 판정
+        VT3@10#3  어드밴티지 1점을 사용해 스페셜치 10, 펌블치 3 판정을 주사위 3개로 판정
 
-        VT>=5         デフォルトのスペシャル値・ファンブル値で目標値5の判定を行う
-        VT@10#3>=5    スペシャル値10、ファンブル値3で目標値5の判定を行う
-        VT@10#3$5>=5  スペシャル値10、ファンブル値3で目標値5の判定を行う。この際達成値が目標値より5以上大きい場合、ギャップボーナスを表示する
-        VT3@10#3>=5   スペシャル値10、ファンブル値3で目標値5の判定を、アドバンテージを1点消費してダイス3つで行う
-        VT3@10#3$4>=5 スペシャル値10、ファンブル値3で目標値5の判定を、アドバンテージを1点消費してダイス3つで行う。この際達成値が目標値より4以上大きい場合、ギャップボーナスを表示する
+        VT>=5         기본 스페셜치, 펌블치로 목표치 5 판정
+        VT@10#3>=5    스페셜치 10, 펌블치 3으로 목표치 5 판정
+        VT@10#3$5>=5  스페셜치 10, 펌블치 3으로 목표치 5 판정. 이때 달성치가 목표치보다 5이상 큰 경우, 갭 보너스를 표시
+        VT3@10#3>=5   어드밴티지 1점을 사용해 스페셜치 10, 펌블치 3, 목표치 5 판정을 주사위 3개로 판정 
+        VT3@10#3$4>=5 어드밴티지 1점을 사용해 스페셜치 10, 펌블치 3, 목표치 5 판정을 주사위 3개로 판정. 이때 달성치가 목표치보다 4이상 큰 경우, 갭 보너스를 표시 
       MESSAGETEXT
 
       # 既定のスペシャル値
@@ -87,7 +87,7 @@ module BCDice
 
         level_gap_str =
           if cmd.target_number && cmd.dollar && result.success? && (gap = total - cmd.target_number) >= cmd.dollar
-            "ギャップボーナス(#{gap})"
+            "갭 보너스(#{gap})"
           end
 
         sequence = [
@@ -110,16 +110,16 @@ module BCDice
         fumble = cmd.fumble || DEFAULT_FUMBLE_VALUE
 
         if dice_total <= fumble
-          return Result.fumble('ファンブル')
+          return Result.fumble('펌블')
         elsif dice_total >= special
-          return Result.critical('スペシャル')
+          return Result.critical('스페셜')
         end
 
         if cmd.target_number
           if total.send(cmd.cmp_op, cmd.target_number)
-            return Result.success('成功')
+            return Result.success('성공')
           else
-            return Result.failure('失敗')
+            return Result.failure('실패')
           end
         else
           return Result.new(nil)
