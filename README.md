@@ -3,6 +3,7 @@
 https://github.com/bcdice/BCDice/blob/master/test/data/Ventangle.toml の翻訳です。 
 
 
+-------------------------
 
 [Ventangle_Korean.rb]
 
