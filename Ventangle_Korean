@@ -71,7 +71,7 @@ rands = [
 
 [[ test ]]
 game_system = "Ventangle:Korean"
-input = "VT@5#5+3 스페셜치와 펌블치가 같은 값인 경우, 펌블을 우선"
+input = "VT@5#5+3 スペシャルとファンブルが同値であればファンブルを優先"
 output = "VT@5#5+3 ＞ [3, 2] ＞ 5+3 ＞ 8 ＞ 펌블"
 failure = true
 fumble = true
@@ -82,7 +82,7 @@ rands = [
 
 [[ test ]]
 game_system = "Ventangle:Korean"
-input = "VT@10#7>=5 달성치가 목표치 이상이라도 펌블치를 초과하지 않으면 펌블로 취급"
+input = "VT@10#7>=5 目標値以上でもファンブル値を超えていなければファンブル"
 output = "VT@10#7>=5 ＞ [3, 2] ＞ 5 ＞ 펌블"
 failure = true
 fumble = true
