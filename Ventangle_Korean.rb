@@ -4,7 +4,7 @@ require 'bcdice/base'
 
 module BCDice
   module GameSystem
-    class Ventangle < Base
+    class Ventangle_Korean < Ventangle
       # ゲームシステムの識別子
       ID = 'Ventangle:Korean'
 
